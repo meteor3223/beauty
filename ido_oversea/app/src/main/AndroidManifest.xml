@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.xym.beautygallery">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <application
+        android:name="com.xym.beautygallery.base.BeautyApplication"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/MyAppTheme">
+
+        <meta-data
+            android:name="PGYER_APPID"
+            android:value="087dffbc91bee2478812795ea474c446" >
+        </meta-data>
+
+        <activity
+            android:name="com.xym.beautygallery.ui.MainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.xym.beautygallery.base.FragmentContainerActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyTranslucentAppTheme"></activity>
+
+        <activity
+            android:name="com.xym.beautygallery.ui.FeedbackActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyTranslucentAppTheme"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name="com.xym.beautygallery.ui.AboutActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyTranslucentAppTheme" />
+
+        <activity
+            android:name="com.xym.beautygallery.ui.ImageDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyTranslucentAppTheme" />
+
+        <activity
+            android:name="com.xym.beautygallery.ui.TagAlbumActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyTranslucentAppTheme" />
+
+        <activity
+            android:name="com.xym.beautygallery.ui.MzituAlbumBrowseActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyTranslucentAppTheme" />
+
+
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="578b369ce0f55a1cb80052c6" />
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="${CHANNEL_NAME}" />
+
+        <meta-data
+            android:name="TD_APP_ID"
+            android:value="5C8C9F617178D622177EC5B6E333D76E" />
+        <meta-data
+            android:name="TD_CHANNEL_ID"
+            android:value="${CHANNEL_NAME}" />
+    </application>
+
+</manifest>

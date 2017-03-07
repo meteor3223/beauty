@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="5dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="50dp"
+    android:paddingTop="20dp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:background="@drawable/chat_left_bg">
+
+        <TextView
+            android:id="@+id/fb_reply_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left|center"
+            android:lineSpacingExtra="3dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="8dp"
+            android:textColor="@color/md_black_0"
+            android:textSize="14sp" />
+
+        <!-- android:lineSpacingExtra="3dp" -->
+        <!-- android:lineSpacingMultiplier="1.2" -->
+        <!-- android:paddingTop="3dp" -->
+    </RelativeLayout>
+
+</LinearLayout>

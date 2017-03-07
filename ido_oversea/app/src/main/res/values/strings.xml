@@ -1,0 +1,81 @@
+<resources>
+    <string name="app_name">Beauty wallpaper</string>
+
+    <string name="introduce">&#160;&#160;&#160;&#160;You are welcome to use Look Beauty!\n&#160;&#160;&#160;&#160;1, please click on the upper left corner, will appear in the menu bar;\n&#160;&#160;&#160;&#160;2, the third is what we carefully collected information on a page, click can open the browser, click the heart-shaped icon can add to favorites, because we will regularly update, please add to favorites if you like the content;\n&#160;&#160;&#160;&#160;3, the fourth for favorites, it will be shown frequency intelligent sorting;</string>
+    <string name="action_main">Main</string>
+    <string name="action_content">Content Alliance</string>
+    <string name="action_suggestion">Recommended</string>
+    <string name="action_favorite">Favorite</string>
+    <string name="action_remove">Remove</string>
+    <string name="action_browser">Browser</string>
+    <string name="action_settings">Setting</string>
+    <string name="share_me">Share us</string>
+    <string name="feedback">Feedback</string>
+    <string name="marking">Rate us</string>
+    <string name="update">Version check</string>
+    <string name="updating">Checking...</string>
+    <string name="no_new_version_update">Current version is up-to-date!</string>
+    <string name="setting_marking_chooser">Select Market</string>
+    <string name="about_as">About</string>
+    <string name="drawer_open">drawer_open</string>
+    <string name="drawer_close">drawer_close</string>
+
+    <string name="common_ok">Ok</string>
+    <string name="common_cancel">Cancel</string>
+
+    <string name="default_reply">Welcome to use! Any questions or suggestions, please give us feedback here. We will contact you in time. Thank you very much!</string>
+    <string name="feedback_message">Receive reply</string>
+    <string name="wifimgr_say_to_product_manager">"Feedback to product manager"</string>
+    <string name="about_msg">&#160;&#160;&#160;&#160;&#160;&#160;You are welcome to use Beauty wallpaper!</string>
+    <string name="wifimgr_version">"Version：V%1$s"</string>
+    <string name="on_back_pressed_prompt">Press again to quit</string>
+    <string name="close">Close</string>
+
+    <string name="main_fragment_mzitu">Beauty</string>
+    <string name="main_fragment_mzitu_share">Selfie</string>
+    <string name="main_fragment_classify">Classify</string>
+    <string name="main_fragment_favorite">Favorite</string>
+    <string name="rv_list_loading">Loading...</string>
+    <string name="rv_list_end">There are no more data:)</string>
+    <string name="network_not_available">Network disabled, please check</string>
+    <string name="access_mobile_network">Attention please, current network is not wifi!</string>
+
+    <string name="image_deatil_action_favorite">Add favorite</string>
+    <string name="image_deatil_action_not_favorite">Close favorite</string>
+    <string name="image_deatil_action_download">Download</string>
+    <string name="image_deatil_action_share">Share</string>
+
+    <string name="image_download_success">Download success!</string>
+    <string name="image_download_failed">Download fail!</string>
+    <string name="pic_share_chooser">Share picture via</string>
+
+    <string name="update_confirm">Confirm</string>
+    <string name="update_tip">Detect a new version, please confirm whether it is updated?</string>
+    <string name="update_yes">Yes</string>
+    <string name="update_no">No</string>
+
+    <string name="pics">P</string>
+    <string name="rate_us">Rate us if you like it?</string>
+    <string name="rate_ok">Ok</string>
+    <string name="rate_refuse">Refuse</string>
+
+    <string name="apk_download_failed">Download failed!</string>
+    <string name="apk_download">Download</string>
+    <string name="apk_downloading">Downloading</string>
+    <string name="apk_install">Install</string>
+    <string name="apk_install_without_download">Install</string>
+    <string name="apk_start">Start</string>
+
+    <string name="recommend_app_tips">Thanks for your support</string>
+    <string name="recommend_app_download_cancel">Cancel</string>
+    <string name="recommend_app_download_ok">Download</string>
+    <string name="recommend_app_downloading">Downloading %1$d%%</string>
+
+    <string name="switch_photo_channel">Switch album</string>
+    <string name="commom_ad">Ad</string>
+
+    <string name="tag_classify">Type</string>
+    <string name="tag_good_web">Famous</string>
+    <string name="tag_beauty_name">Name</string>
+    <string name="tag_vision">Vision</string>
+</resources>

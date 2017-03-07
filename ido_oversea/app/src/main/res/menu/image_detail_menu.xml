@@ -1,0 +1,21 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_fav_btn"
+        android:icon="@mipmap/heart_hollow"
+        android:showAsAction="always"
+        android:title="@string/image_deatil_action_favorite" />
+
+    <item
+        android:id="@+id/action_download_tx"
+        android:showAsAction="never"
+        android:title="@string/image_deatil_action_download"/>
+    <item
+        android:id="@+id/action_share_tx"
+        android:showAsAction="never"
+        android:title="@string/image_deatil_action_share"/>
+    <item
+        android:id="@+id/action_fav_tx"
+        android:showAsAction="never"
+        android:title="@string/image_deatil_action_favorite"/>
+</menu>

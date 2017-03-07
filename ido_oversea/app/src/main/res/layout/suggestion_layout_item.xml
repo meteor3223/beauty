@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.lid.lib.LabelLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/item_root"
+    android:layout_width="fill_parent"
+    android:layout_height="62dp"
+    android:background="@drawable/common_list_item_bg"
+    android:gravity="center_vertical"
+    android:minHeight="56dp"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/prefs_padding_size_large"
+    android:paddingRight="@dimen/prefs_padding_size"
+    app:label_backgroundColor="#C2185B"
+    app:label_distance="18dp"
+    app:label_height="18dp"
+    app:label_orientation="LEFT_TOP"
+    app:label_text="Love"
+    app:label_textSize="12sp"
+    app:label_visual="false">
+
+    <RelativeLayout
+        android:id="@+id/normal_panel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.0">
+
+        <TextView
+            android:id="@+id/url_des"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="des"
+            android:textColor="#363636"
+            android:textSize="@dimen/prefs_name_size" />
+
+
+        <TextView
+            android:id="@+id/url_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/url_des"
+            android:layout_marginTop="4dp"
+            android:singleLine="true"
+            android:text="address"
+            android:textColor="#818181"
+            android:textSize="@dimen/prefs_summary_size"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <com.balysv.materialripple.MaterialRippleLayout
+        android:id="@+id/heart_action"
+        android:layout_width="48dp"
+        android:layout_height="48dp">
+
+        <ImageView
+            android:id="@+id/heart_iv"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:src="@mipmap/heart_hollow" />
+    </com.balysv.materialripple.MaterialRippleLayout>
+
+</com.lid.lib.LabelLinearLayout>

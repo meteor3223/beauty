@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.titans.android.common.TitleIndicator
+        android:id="@+id/title_indicator"
+        custom:footerLineHeight="2dp"
+        custom:footerTriangleHeight="24dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary"
+        android:orientation="horizontal" />
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+
+        <com.titans.android.common.CustomViewPager
+            android:id="@+id/main_viewpager"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" />
+
+
+        <include layout="@layout/shadow_layout" />
+    </FrameLayout>
+</LinearLayout>
