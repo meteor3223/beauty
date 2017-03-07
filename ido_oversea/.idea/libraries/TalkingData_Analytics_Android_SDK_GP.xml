@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="TalkingData_Analytics_Android_SDK_GP">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/libs/TalkingData_Analytics_Android_SDK_GP.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
