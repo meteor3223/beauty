@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="common_white">#ffffff</color>
+    <color name="common_black">#000000</color>
+    <color name="common_transparent">#00000000</color>
+    <color name="common_title">#2196F3</color>
+    <color name="color_bg_gray">#eaeaea</color>
+    <color name="list_divider_color">#dedede</color>
+    <color name="common_list_item_press">#f8f8f8</color>
+    <color name="drawer_selector_font">#ff666666</color>
+    <color name="color_green">#00d20c</color>
+    <color name="color_text_gray">#818181</color>
+    <color name="color_remove_btn_background">#f2f2f2</color>
+    <color name="icons">#FFFFFF</color>
+    <color name="icons_alpha_30">#68FFFFFF</color>
+    <color name="divider">#B6B6B6</color>
+
+    <color name="common_green_light">#c1d933</color>
+    <color name="common_green">#9fd00b</color>
+    <color name="main_color_light">@color/common_green_light</color>
+    <color name="main_color">@color/common_green</color>
+
+    <!-- black -->
+    <color name="md_black_0">#de000000</color>
+    <!-- alpha 87% -->
+    <color name="md_black_1">#8a000000</color>
+    <!-- alpha 54% -->
+    <color name="md_black_2">#42000000</color>
+    <!-- alpha 26% -->
+    <color name="md_black_3">#1f000000</color>
+    <!-- alpha 12% -->
+    <!-- white -->
+    <color name="md_white_0">#ffffffff</color>
+    <!-- alpha 100% -->
+    <color name="md_white_1">#b3ffffff</color>
+    <!-- alpha 70% -->
+    <color name="md_white_2">#4dffffff</color>
+    <!-- alpha 30% -->
+    <color name="md_white_3">#1fffffff</color>
+    <!-- alpha 12% -->
+
+
+    <item name="drawer_bg_color_normal" type="color">#00ffffff</item>
+    <item name="drawer_bg_color_press" type="color">#ffeeeeee</item>
+    <item name="drawer_bg_color_white" type="color">#ff2d353f</item>
+    <item name="drawer_bg_color_divide" type="color">#ff243040</item>
+    <item name="drawer_bg_color_bottom" type="color">#ff1e2733</item>
+
+    <color name="ldrawer_color">#FFFFFF</color>
+    <color name="white">#FFFFFF</color>
+
+    <item name="gray_drawable" type="drawable">#FF5252</item>
+
+    <color name="text_password_wrong">#ffffe5b2</color>
+    <color name="accent">#FF5252</color>
+    <color name="primary">#FF5252</color>
+    <color name="common_grey">#EEEEEE</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#727272</color>
+
+    <color name="common_blue">#29abff</color>
+    <color name="gray">#aaaaaa</color>
+
+    <color name="common_dialog_font_color">#333333</color>
+    <color name="common_dialog_press_color">#dddddd</color>
+    <color name="common_black_divider">#B6B6B6</color>
+</resources>
