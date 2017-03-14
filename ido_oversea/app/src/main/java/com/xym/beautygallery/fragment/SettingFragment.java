@@ -1,10 +1,7 @@
 package com.xym.beautygallery.fragment;
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,13 +9,13 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.balysv.materialripple.MaterialRippleLayout;
 import com.xym.beautygallery.R;
 import com.xym.beautygallery.base.BaseFragment;
 import com.xym.beautygallery.ui.AboutActivity;
 import com.xym.beautygallery.ui.FeedbackActivity;
+import com.xym.beautygallery.utils.ShareUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,6 +31,8 @@ public class SettingFragment extends BaseFragment {
     MaterialRippleLayout slideAbout;
     @BindView(R.id.slide_mark)
     MaterialRippleLayout slideMark;
+    @BindView(R.id.slide_share)
+    MaterialRippleLayout slideShare;
     private Context mContext;
     private Unbinder unbinder;
 
@@ -47,6 +46,12 @@ public class SettingFragment extends BaseFragment {
         } catch (ActivityNotFoundException e) {
 //            Toast.makeText(mContext,"Couldn't launch the market!",Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void doShare(Context ctx) {
+        String title = getString(R.string.beauty_share_detail);
+
+        ShareUtils.shareMsgWithChooser(ctx, title, title, null);
     }
 
     @Nullable
@@ -76,6 +81,13 @@ public class SettingFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 doMark(mContext);
+            }
+        });
+
+        slideShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                doShare(mContext);
             }
         });
         return view;

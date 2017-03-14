@@ -64,4 +64,5 @@
     <color name="common_dialog_font_color">#333333</color>
     <color name="common_dialog_press_color">#dddddd</color>
     <color name="common_black_divider">#B6B6B6</color>
+    <color name="button_green">#ff8bc615</color>
 </resources>

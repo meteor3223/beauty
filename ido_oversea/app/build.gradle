@@ -6,11 +6,19 @@ android {
     buildToolsVersion "23.0.2"
 
     defaultConfig {
-        applicationId "com.xym.oversea.beautygallery"
+        applicationId "com.sh2bj.photos.os"
         minSdkVersion 14
         targetSdkVersion 21
-        versionCode 3
-        versionName "1.0.3"
+        versionCode 1000
+        versionName "1.0.0"
+
+        manifestPlaceholders = [
+                GETUI_APP_ID    : "QsSh8v6m1l5sLotiBFRtR6",
+                GETUI_APP_KEY   : "B0CPS9428O8OIEQWDUdeB5",
+                GETUI_APP_SECRET: "FroVbeWI1FAUW9ZeGuux54",
+                PACKAGE_NAME    : "com.sh2bj.photos.os"
+        ]
+        ndk { abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "mips", "mips64", "x86", "x86_64" }
     }
 
     signingConfigs {
@@ -37,8 +45,8 @@ android {
     }
 
     productFlavors {
-        lianluo {
-            manifestPlaceholders = [CHANNEL_NAME: "lianluo"]
+        ido {
+            manifestPlaceholders = [CHANNEL_NAME: "ido_tool"]
         }
     }
 
@@ -57,4 +65,6 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.1.0'
     apt 'com.jakewharton:butterknife-compiler:8.1.0'
     compile project(':DownloadLib')
+    compile project(':Getui_SDK')
+    compile files('libs/umeng-analytics-v5.6.3.jar')
 }

@@ -35,9 +35,6 @@ import com.facebook.ads.AdSize;
 import com.facebook.ads.AdView;
 import com.squareup.picasso.Picasso;
 import com.xym.beautygallery.R;
-import com.xym.beautygallery.ad.AdConstants;
-import com.xym.beautygallery.ad.AdManager;
-import com.xym.beautygallery.ad.NativeAd;
 import com.xym.beautygallery.appinfo.AppManager;
 import com.xym.beautygallery.appinfo.AppRecommend;
 import com.xym.beautygallery.base.AppConfigMgr;
@@ -137,28 +134,8 @@ public class MzituAlbumBrowseActivity extends BaseSwipeBackActivity {
 
                 Picasso.with(mContext).load(mDatas.get(itemPosition).pic_url_address).config(Bitmap.Config.RGB_565).into(photoIv);
             }
-
-            @Override
-            protected void convertAd(ViewHolder holder, NativeAd t, int position) {
-                ImageView photoIv = holder.getView(R.id.image);
-                WindowManager wm = (WindowManager) mContext
-                        .getSystemService(Context.WINDOW_SERVICE);
-                int lcdWidth = wm.getDefaultDisplay().getWidth();
-
-                int widthIv = lcdWidth / 2;
-                ViewGroup.LayoutParams para;
-                para = photoIv.getLayoutParams();
-                para.height = widthIv * 4 / 3;
-                para.width = widthIv;
-                photoIv.setLayoutParams(para);
-                photoIv.setScaleType(ImageView.ScaleType.FIT_XY);
-
-                Picasso.with(mContext).load(t.imgUrl).config(Bitmap.Config.RGB_565).into(photoIv);
-                t.performClick(holder.getConvertView(), AdConstants.ALBUM_AD_ID);
-            }
         };
-        mAdapter.setNativeAdEnable(AdManager.getInstance(this).enableAd(AdConstants.ALBUM_AD_ID));
-        mAdapter.setNativeId(AdConstants.ALBUM_AD_ID);
+
         initHeaderAndFooter();
 
         mLoadMoreWrapper = new LoadMoreWrapper(mHeaderAndFooterWrapper);
@@ -235,7 +212,7 @@ public class MzituAlbumBrowseActivity extends BaseSwipeBackActivity {
 
     private void loadFBAd() {
         final Button closeButton = new Button(mContext);
-        adView = new com.facebook.ads.AdView(mContext, "800529513419419_800542710084766", AdSize.BANNER_320_50);
+        adView = new com.facebook.ads.AdView(mContext, "229449484183052_229452707516063", AdSize.BANNER_320_50);
         adView.loadAd();
         Log.e("MzituAlbumBrowse", "loadFBAd ");
 

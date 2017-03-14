@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">美女壁纸图</string>
+    <string name="app_name">美图大赏</string>
 
-    <string name="introduce">&#160;&#160;&#160;&#160;欢迎您使用看美女应用！\n&#160;&#160;&#160;&#160;1，请点击左上角，会出现菜单栏；\n&#160;&#160;&#160;&#160;2，第三项是我们为您精心收集的网页信息，直接点击可以打开浏览，点击心形图标可以加入收藏夹，因为我们会定时更新，请将喜欢的内容收藏；\n&#160;&#160;&#160;&#160;3，第四项为收藏夹，您收藏的内容会在这里，会根据您的浏览次数智能排序；</string>
+    <string name="introduce">&#160;&#160;&#160;&#160;欢迎您使用美图大赏应用！\n&#160;&#160;&#160;&#160;1，请点击左上角，会出现菜单栏；\n&#160;&#160;&#160;&#160;2，第三项是我们为您精心收集的网页信息，直接点击可以打开浏览，点击心形图标可以加入收藏夹，因为我们会定时更新，请将喜欢的内容收藏；\n&#160;&#160;&#160;&#160;3，第四项为收藏夹，您收藏的内容会在这里，会根据您的浏览次数智能排序；</string>
     <string name="action_main">首页</string>
     <string name="action_content">内容联盟</string>
     <string name="action_suggestion">精品推荐</string>
@@ -26,7 +26,7 @@
     <string name="default_reply">欢迎使用！您在使用过程中有任何疑问或者建议，请在这里反馈给我们。我们将及时与您联系！不胜感谢！</string>
     <string name="feedback_message">收到产品回复</string>
     <string name="wifimgr_say_to_product_manager">"向产品经理吐槽"</string>
-    <string name="about_msg">&#160;&#160;&#160;&#160;&#160;&#160;欢迎您使用美女壁纸图应用！我们为您精心收集了海量美女图片资源，我们会持续更新内容。如果您有任何问题和建议，请不吝反馈！</string>
+    <string name="about_msg">&#160;&#160;&#160;&#160;&#160;&#160;欢迎您使用美图大赏应用！我们为您精心收集了海量美女图片资源，我们会持续更新内容。如果您有任何问题和建议，请不吝反馈！</string>
     <string name="wifimgr_version">"版本：V%1$s"</string>
     <string name="on_back_pressed_prompt">再按一次退出</string>
     <string name="close">关闭</string>
@@ -78,4 +78,10 @@
     <string name="tag_good_web">名站写真</string>
     <string name="tag_beauty_name">妹子</string>
     <string name="tag_vision">视觉</string>
+    <string name="icon_desc">Ad icon</string>
+    <string name="image_desc">Ad image</string>
+
+    <string name="beauty_share_detail">把 美图大赏 分享给咱的小伙伴</string>
+    <string name="beauty_share_text">点击下载：</string>
+    <string name="beauty_share_from">"。来自:"</string>
 </resources>

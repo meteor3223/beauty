@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -25,13 +26,13 @@ import com.facebook.ads.AdError;
 import com.facebook.ads.AdListener;
 import com.facebook.ads.AdSize;
 import com.facebook.ads.AdView;
+import com.facebook.ads.MediaView;
+import com.facebook.ads.NativeAd;
+import com.facebook.ads.NativeAdsManager;
 import com.lid.lib.LabelImageView;
 import com.squareup.picasso.Picasso;
 import com.titans.android.common.CustomFragment;
 import com.xym.beautygallery.R;
-import com.xym.beautygallery.ad.AdConstants;
-import com.xym.beautygallery.ad.AdManager;
-import com.xym.beautygallery.ad.NativeAd;
 import com.xym.beautygallery.base.BeautyApplication;
 import com.xym.beautygallery.base.Constants;
 import com.xym.beautygallery.base.stats.StatsReportConstants;
@@ -50,6 +51,7 @@ import com.zhy.adapter.recyclerview.wrapper.LoadMoreWrapper;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -74,6 +76,18 @@ public class MzituPhotoFragment extends CustomFragment {
     private EmptyWrapper mEmptyWrapper;
     private LoadMoreWrapper mLoadMoreWrapper;
 
+    private NativeAdsManager mNativeAdsManager;
+    private List<NativeAd> mAdItems;
+    private int adDisplayFrequency = 6;
+    private int POST_TYPE = 0;
+    private int AD_TYPE = 1;
+    private int ad_width = 0;
+    private int ad_height = 0;
+
+    private int getAdType(int position) {
+        return position % adDisplayFrequency == (adDisplayFrequency - 1) ? AD_TYPE : POST_TYPE;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater,
                              @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -84,61 +98,100 @@ public class MzituPhotoFragment extends CustomFragment {
         mContext = getActivity();
         unbinder = ButterKnife.bind(this, view);
 
+        String placement_id = "229449484183052_229453584182642";
+        mNativeAdsManager = new NativeAdsManager(mContext, placement_id, 8);
+        mNativeAdsManager.loadAds();
+        mAdItems = new ArrayList<>();
+
         initDatas();
         mainPhotoRv.setLayoutManager(new MyGridLayoutManager(mContext, 3));
         mainPhotoRv.addItemDecoration(new RBaseItemDecoration(Constants.DEFAULT_ITEM_DECORATION));
         mAdapter = new CommonAdapter<AlbumInfo>(mContext, R.layout.main_photo_item, mDatas) {
             @Override
             protected void convert(ViewHolder holder, AlbumInfo s, int position) {
-                TextView photoPics = holder.getView(R.id.main_photo_item_pics_tv);
-                LabelImageView photoIv = holder.getView(R.id.main_photo_item_iv);
+                if (getAdType(position) == AD_TYPE) {
+                    LabelImageView photoIv = holder.getView(R.id.main_photo_item_iv);
+                    TextView photoPics = holder.getView(R.id.main_photo_item_pics_tv);
+                    LinearLayout nativeAdUnit = holder.getView(R.id.ad_unit);
+                    NativeAd ad = null;
 
-                WindowManager wm = (WindowManager) mContext
-                        .getSystemService(Context.WINDOW_SERVICE);
-                int lcdWidth = wm.getDefaultDisplay().getWidth();
+                    photoIv.setVisibility(View.GONE);
+                    photoPics.setVisibility(View.GONE);
+                    nativeAdUnit.setVisibility(View.VISIBLE);
+                    ViewGroup.LayoutParams para;
+                    para = nativeAdUnit.getLayoutParams();
+                    para.height = ad_height;
+                    para.width = ad_width;
+                    nativeAdUnit.setLayoutParams(para);
 
-                int widthIv = lcdWidth / 3;
-                int heightIv = (int) (widthIv * 1.5f);
-//                int heightIv = (int) (((double) ((widthIv - 10) * mDatas.get(position).album_height)) / mDatas.get(position).album_width);
+                    int index = (position / adDisplayFrequency);
+                    if (mAdItems.size() > index) {
+                        ad = mAdItems.get(index);
+                        if (ad == null && mNativeAdsManager.isLoaded()) {
+                            ad = mNativeAdsManager.nextNativeAd();
+                            mAdItems.set(index, ad);
+                        }
+                    } else {
+                        if (mNativeAdsManager.isLoaded()) {
+                            ad = mNativeAdsManager.nextNativeAd();
+                        }
+                        mAdItems.add(index, ad);
+                    }
+                    if (ad != null) {
+                        ImageView adChoicesIm = holder.getView(R.id.ad_choices_view);
+                        MediaView mvAdMedia = holder.getView(R.id.native_ad_media);
+                        TextView tvAdTitle = holder.getView(R.id.native_ad_title);
+                        TextView tvAdBody = holder.getView(R.id.native_ad_body);
+                        Button btnAdCallToAction = holder.getView(R.id.native_ad_call_to_action);
+                        // Downloading and setting the ad icon.
+                        NativeAd.Image adIcon = ad.getAdChoicesIcon();
+                        NativeAd.downloadAndDisplayImage(adIcon, adChoicesIm);
 
-                ViewGroup.LayoutParams para;
-                para = photoIv.getLayoutParams();
-                para.height = heightIv;
-                para.width = widthIv;
-                photoIv.setLayoutParams(para);
+                        tvAdTitle.setText(ad.getAdTitle());
+                        tvAdBody.setText(ad.getAdBody());
+                        mvAdMedia.setNativeAd(ad);
+                        btnAdCallToAction.setText(ad.getAdCallToAction());
 
-                if (mDatas.get(position).is_love > 0) {
-                    photoIv.setLabelVisual(true);
+                        ad.registerViewForInteraction(nativeAdUnit);
+                    }
                 } else {
-                    photoIv.setLabelVisual(false);
+                    int index = position - (position / adDisplayFrequency);
+                    TextView photoPics = holder.getView(R.id.main_photo_item_pics_tv);
+                    LabelImageView photoIv = holder.getView(R.id.main_photo_item_iv);
+                    LinearLayout nativeAdUint = holder.getView(R.id.ad_unit);
+
+                    photoIv.setVisibility(View.VISIBLE);
+                    photoPics.setVisibility(View.VISIBLE);
+                    nativeAdUint.setVisibility(View.GONE);
+                    WindowManager wm = (WindowManager) mContext
+
+                            .getSystemService(Context.WINDOW_SERVICE);
+                    int lcdWidth = wm.getDefaultDisplay().getWidth();
+
+                    int widthIv = lcdWidth / 3;
+                    int heightIv = (int) (widthIv * 1.5f);
+//                int heightIv = (int) (((double) ((widthIv - 10) * mDatas.get(index).album_height)) / mDatas.get(index).album_width);
+
+                    ViewGroup.LayoutParams para;
+                    para = photoIv.getLayoutParams();
+                    para.height = heightIv;
+                    para.width = widthIv;
+                    ad_width = widthIv;
+                    ad_height = heightIv;
+                    photoIv.setLayoutParams(para);
+
+                    if (mDatas.get(index).is_love > 0) {
+                        photoIv.setLabelVisual(true);
+                    } else {
+                        photoIv.setLabelVisual(false);
+                    }
+                    Picasso.with(mContext).load(mDatas.get(index).album_thumb).config(Bitmap.Config.RGB_565).into(photoIv);
+                    photoPics.setText(mDatas.get(index).album_pics);
                 }
-                Picasso.with(mContext).load(mDatas.get(position).album_thumb).config(Bitmap.Config.RGB_565).into(photoIv);
-                photoPics.setText(mDatas.get(position).album_pics);
             }
 
-            @Override
-            protected void convertAd(ViewHolder holder, NativeAd t, int position) {
-                TextView photoPics = holder.getView(R.id.main_photo_item_pics_tv);
-                LabelImageView photoIv = holder.getView(R.id.main_photo_item_iv);
-                WindowManager wm = (WindowManager) mContext
-                        .getSystemService(Context.WINDOW_SERVICE);
-                int lcdWidth = wm.getDefaultDisplay().getWidth();
-
-                int widthIv = lcdWidth / 3;
-                int heightIv = (int) (widthIv * 1.5f);
-                ViewGroup.LayoutParams para;
-                para = photoIv.getLayoutParams();
-                para.height = heightIv;
-                para.width = widthIv;
-                photoIv.setLayoutParams(para);
-                photoIv.setScaleType(ImageView.ScaleType.FIT_XY);
-                Picasso.with(mContext).load(t.imgUrl).config(Bitmap.Config.RGB_565).into(photoIv);
-                t.performClick(holder.getConvertView(), AdConstants.MAIN_AD_ID);
-                photoPics.setText("AD");
-            }
         };
-        mAdapter.setNativeId(AdConstants.MAIN_AD_ID);
-        mAdapter.setNativeAdEnable(AdManager.getInstance(mContext).enableAd(AdConstants.MAIN_AD_ID));
+
         initHeaderAndFooter();
 
         mLoadMoreWrapper = new LoadMoreWrapper(mHeaderAndFooterWrapper);
@@ -159,33 +212,43 @@ public class MzituPhotoFragment extends CustomFragment {
         mAdapter.setOnItemClickListener(new CommonAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, RecyclerView.ViewHolder holder, final int position) {
-                AlbumInfo currentAlbum = mDatas.get(position);
-                if (currentAlbum != null) {
-                    DataManager.getInstance(mContext).setmCurrentAlbum(currentAlbum);
-                    DataManager.getInstance(mContext).setIsFromFav(false);
-                    ((BeautyApplication) mContext.getApplicationContext()).setRefreshCallBack(new BeautyApplication.RefreshInterface() {
-                        @Override
-                        public void doRefresh() {
-                            mLoadMoreWrapper.notifyItemChanged(position);
-                        }
-                    });
-                    Intent intent = new Intent(mContext, MzituAlbumBrowseActivity.class);
-                    mContext.startActivity(intent);
+                if (getAdType(position) == AD_TYPE) {
+
+                } else {
+                    int index = position - (position / adDisplayFrequency);
+                    AlbumInfo currentAlbum = mDatas.get(index);
+                    if (currentAlbum != null) {
+                        DataManager.getInstance(mContext).setmCurrentAlbum(currentAlbum);
+                        DataManager.getInstance(mContext).setIsFromFav(false);
+                        ((BeautyApplication) mContext.getApplicationContext()).setRefreshCallBack(new BeautyApplication.RefreshInterface() {
+                            @Override
+                            public void doRefresh() {
+                                mLoadMoreWrapper.notifyItemChanged(position);
+                            }
+                        });
+                        Intent intent = new Intent(mContext, MzituAlbumBrowseActivity.class);
+                        mContext.startActivity(intent);
+                    }
                 }
             }
 
             @Override
             public boolean onItemLongClick(View view, RecyclerView.ViewHolder holder, int position) {
-                if (mDatas.get(position).is_love > 0) {
-                    mDatas.get(position).is_love = 0;
+                if (getAdType(position) == AD_TYPE) {
+
                 } else {
-                    mDatas.get(position).is_love = 1;
+                    int index = position - (position / adDisplayFrequency);
+                    if (mDatas.get(index).is_love > 0) {
+                        mDatas.get(index).is_love = 0;
+                    } else {
+                        mDatas.get(index).is_love = 1;
+                    }
+                    mDatas.get(index).love_time = System.currentTimeMillis();
+                    AlbumInfo newInfo = new AlbumInfo(mDatas.get(index));
+                    int lovePos = DataManager.getInstance(mContext).setFavoriteStatus(newInfo);
+                    ((BeautyApplication) mContext.getApplicationContext()).handleLoveRefreshCallBack(lovePos, mDatas.get(index).is_love);
+                    mLoadMoreWrapper.notifyItemChanged(position);
                 }
-                mDatas.get(position).love_time = System.currentTimeMillis();
-                AlbumInfo newInfo = new AlbumInfo(mDatas.get(position));
-                int lovePos = DataManager.getInstance(mContext).setFavoriteStatus(newInfo);
-                ((BeautyApplication) mContext.getApplicationContext()).handleLoveRefreshCallBack(lovePos, mDatas.get(position).is_love);
-                mLoadMoreWrapper.notifyItemChanged(position);
                 return true;
             }
         });
@@ -193,7 +256,8 @@ public class MzituPhotoFragment extends CustomFragment {
 
             @Override
             public void doMzituLoveRefresh(int pos, int isLove) {
-                mLoadMoreWrapper.notifyItemChanged(pos);
+                int index = pos + (pos / (adDisplayFrequency - 1));
+                mLoadMoreWrapper.notifyItemChanged(index);
             }
         });
 //        loadNewAd();
@@ -228,7 +292,7 @@ public class MzituPhotoFragment extends CustomFragment {
 
     private void loadFBAd() {
         final Button closeButton = new Button(mContext);
-        adView = new AdView(mContext, "800529513419419_800542710084766", AdSize.BANNER_320_50);
+        adView = new AdView(mContext, "229449484183052_229452707516063", AdSize.BANNER_320_50);
         adView.loadAd();
         Log.e("MzituPhotoFragment", "loadFBAd ");
 

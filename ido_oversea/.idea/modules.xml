@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/DownloadLib/DownloadLib.iml" filepath="$PROJECT_DIR$/DownloadLib/DownloadLib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Getui_SDK/Getui_SDK.iml" filepath="$PROJECT_DIR$/Getui_SDK/Getui_SDK.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/ido_oversea.iml" filepath="$PROJECT_DIR$/ido_oversea.iml" />
     </modules>

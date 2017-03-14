@@ -17,6 +17,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -26,6 +28,9 @@ import com.facebook.ads.AdError;
 import com.facebook.ads.AdListener;
 import com.facebook.ads.AdSize;
 import com.facebook.ads.AdView;
+import com.facebook.ads.MediaView;
+import com.facebook.ads.NativeAd;
+import com.facebook.ads.NativeAdsManager;
 import com.lid.lib.LabelImageView;
 import com.squareup.picasso.Picasso;
 import com.xym.beautygallery.R;
@@ -47,6 +52,7 @@ import com.zhy.adapter.recyclerview.wrapper.LoadMoreWrapper;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -74,6 +80,14 @@ public class TagAlbumActivity extends BaseSwipeBackActivity {
     private View mHeader;
     private RelativeLayout.LayoutParams reLayoutParams;
 
+    private NativeAdsManager mNativeAdsManager;
+    private List<NativeAd> mAdItems;
+    private int adDisplayFrequency = 6;
+    private int POST_TYPE = 0;
+    private int AD_TYPE = 1;
+    private int ad_width = 0;
+    private int ad_height = 0;
+
     private int calcItemPosition(int position) {
         int itemPosition = position - mHeaderCount;
         if (itemPosition < 0) {
@@ -84,6 +98,10 @@ public class TagAlbumActivity extends BaseSwipeBackActivity {
         return itemPosition;
     }
 
+    private int getAdType(int position) {
+        return position % adDisplayFrequency == (adDisplayFrequency - 1) ? AD_TYPE : POST_TYPE;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,6 +109,11 @@ public class TagAlbumActivity extends BaseSwipeBackActivity {
         mContext = this;
         setContentView(R.layout.activity_tag_album);
         ButterKnife.bind(this);
+
+        String placement_id = "229449484183052_229453584182642";
+        mNativeAdsManager = new NativeAdsManager(this, placement_id, 8);
+        mNativeAdsManager.loadAds();
+        mAdItems = new ArrayList<>();
 
         mInflater = LayoutInflater.from(this);
         getActionBar().setHomeButtonEnabled(true); //设置返回键可用
@@ -103,31 +126,86 @@ public class TagAlbumActivity extends BaseSwipeBackActivity {
         mAdapter = new CommonAdapter<AlbumInfo>(mContext, R.layout.main_photo_item, mDatas) {
             @Override
             protected void convert(ViewHolder holder, AlbumInfo s, int position) {
-                int itemPosition = calcItemPosition(position);
-                TextView photoPics = holder.getView(R.id.main_photo_item_pics_tv);
-                LabelImageView photoIv = holder.getView(R.id.main_photo_item_iv);
+                final int itemPosition = calcItemPosition(position);
+                if (getAdType(itemPosition) == AD_TYPE) {
+                    LabelImageView photoIv = holder.getView(R.id.main_photo_item_iv);
+                    TextView photoPics = holder.getView(R.id.main_photo_item_pics_tv);
+                    LinearLayout nativeAdUnit = holder.getView(R.id.ad_unit);
+                    NativeAd ad = null;
 
-                WindowManager wm = (WindowManager) mContext
-                        .getSystemService(Context.WINDOW_SERVICE);
-                int lcdWidth = wm.getDefaultDisplay().getWidth();
+                    photoIv.setVisibility(View.GONE);
+                    photoPics.setVisibility(View.GONE);
+                    nativeAdUnit.setVisibility(View.VISIBLE);
+                    ViewGroup.LayoutParams para;
+                    para = nativeAdUnit.getLayoutParams();
+                    para.height = ad_height;
+                    para.width = ad_width;
+                    nativeAdUnit.setLayoutParams(para);
 
-                int widthIv = lcdWidth / 3;
+                    int index = (itemPosition / adDisplayFrequency);
+                    if (mAdItems.size() > index) {
+                        ad = mAdItems.get(index);
+                        if (ad == null && mNativeAdsManager.isLoaded()) {
+                            ad = mNativeAdsManager.nextNativeAd();
+                            mAdItems.set(index, ad);
+                        }
+                    } else {
+                        if (mNativeAdsManager.isLoaded()) {
+                            ad = mNativeAdsManager.nextNativeAd();
+                        }
+                        mAdItems.add(index, ad);
+                    }
 
-                int heightIv = (int) (((double) ((widthIv - 10) * mDatas.get(itemPosition).album_height)) / mDatas.get(itemPosition).album_width);
+                    if (ad != null) {
+                        ImageView adChoicesIm = holder.getView(R.id.ad_choices_view);
+                        MediaView mvAdMedia = holder.getView(R.id.native_ad_media);
+                        TextView tvAdTitle = holder.getView(R.id.native_ad_title);
+                        TextView tvAdBody = holder.getView(R.id.native_ad_body);
+                        Button btnAdCallToAction = holder.getView(R.id.native_ad_call_to_action);
+                        // Downloading and setting the ad icon.
+                        NativeAd.Image adIcon = ad.getAdChoicesIcon();
+                        NativeAd.downloadAndDisplayImage(adIcon, adChoicesIm);
 
-                ViewGroup.LayoutParams para;
-                para = photoIv.getLayoutParams();
-                para.height = heightIv;
-                para.width = widthIv;
-                photoIv.setLayoutParams(para);
+                        tvAdTitle.setText(ad.getAdTitle());
+                        tvAdBody.setText(ad.getAdBody());
+                        mvAdMedia.setNativeAd(ad);
+                        btnAdCallToAction.setText(ad.getAdCallToAction());
 
-                if (mDatas.get(itemPosition).is_love > 0) {
-                    photoIv.setLabelVisual(true);
+                        ad.registerViewForInteraction(nativeAdUnit);
+                    }
                 } else {
-                    photoIv.setLabelVisual(false);
+                    int index = itemPosition - (itemPosition / adDisplayFrequency);
+                    LabelImageView photoIv = holder.getView(R.id.main_photo_item_iv);
+                    TextView photoPics = holder.getView(R.id.main_photo_item_pics_tv);
+                    LinearLayout nativeAdUint = holder.getView(R.id.ad_unit);
+
+                    photoIv.setVisibility(View.VISIBLE);
+                    photoPics.setVisibility(View.VISIBLE);
+                    nativeAdUint.setVisibility(View.GONE);
+                    WindowManager wm = (WindowManager) mContext
+                            .getSystemService(Context.WINDOW_SERVICE);
+                    int lcdWidth = wm.getDefaultDisplay().getWidth();
+
+                    int widthIv = lcdWidth / 3;
+
+                    int heightIv = (int) (((double) ((widthIv - 10) * mDatas.get(index).album_height)) / mDatas.get(index).album_width);
+
+                    ViewGroup.LayoutParams para;
+                    para = photoIv.getLayoutParams();
+                    para.height = heightIv;
+                    para.width = widthIv;
+                    ad_width = widthIv;
+                    ad_height = heightIv;
+                    photoIv.setLayoutParams(para);
+
+                    if (mDatas.get(index).is_love > 0) {
+                        photoIv.setLabelVisual(true);
+                    } else {
+                        photoIv.setLabelVisual(false);
+                    }
+                    Picasso.with(mContext).load(mDatas.get(index).album_thumb).into(photoIv);
+                    photoPics.setText(mDatas.get(index).album_pics);
                 }
-                Picasso.with(mContext).load(mDatas.get(itemPosition).album_thumb).config(Bitmap.Config.RGB_565).into(photoIv);
-                photoPics.setText(mDatas.get(itemPosition).album_pics);
             }
         };
         initHeaderAndFooter();
@@ -151,34 +229,44 @@ public class TagAlbumActivity extends BaseSwipeBackActivity {
             @Override
             public void onItemClick(View view, RecyclerView.ViewHolder holder, final int position) {
                 final int itemPosition = calcItemPosition(position);
-                AlbumInfo currentAlbum = mDatas.get(itemPosition);
-                if (currentAlbum != null) {
-                    DataManager.getInstance(mContext).setmCurrentAlbum(currentAlbum);
-                    DataManager.getInstance(mContext).setIsFromFav(false);
-                    ((BeautyApplication) mContext.getApplicationContext()).setRefreshCallBack(new BeautyApplication.RefreshInterface() {
-                        @Override
-                        public void doRefresh() {
-                            mLoadMoreWrapper.notifyItemChanged(itemPosition);
-                        }
-                    });
-                    Intent intent = new Intent(mContext, MzituAlbumBrowseActivity.class);
-                    mContext.startActivity(intent);
+                if (getAdType(itemPosition) == AD_TYPE) {
+
+                } else {
+                    int index = itemPosition - (itemPosition / adDisplayFrequency);
+                    AlbumInfo currentAlbum = mDatas.get(index);
+                    if (currentAlbum != null) {
+                        DataManager.getInstance(mContext).setmCurrentAlbum(currentAlbum);
+                        DataManager.getInstance(mContext).setIsFromFav(false);
+                        ((BeautyApplication) mContext.getApplicationContext()).setRefreshCallBack(new BeautyApplication.RefreshInterface() {
+                            @Override
+                            public void doRefresh() {
+                                mLoadMoreWrapper.notifyItemChanged(position);
+                            }
+                        });
+                        Intent intent = new Intent(mContext, MzituAlbumBrowseActivity.class);
+                        mContext.startActivity(intent);
+                    }
                 }
             }
 
             @Override
             public boolean onItemLongClick(View view, RecyclerView.ViewHolder holder, int position) {
                 int itemPosition = calcItemPosition(position);
-                if (mDatas.get(itemPosition).is_love > 0) {
-                    mDatas.get(itemPosition).is_love = 0;
+                if (getAdType(itemPosition) == AD_TYPE) {
+
                 } else {
-                    mDatas.get(itemPosition).is_love = 1;
+                    int index = itemPosition - (itemPosition / adDisplayFrequency);
+                    if (mDatas.get(index).is_love > 0) {
+                        mDatas.get(index).is_love = 0;
+                    } else {
+                        mDatas.get(index).is_love = 1;
+                    }
+                    mDatas.get(index).love_time = System.currentTimeMillis();
+                    AlbumInfo newInfo = new AlbumInfo(mDatas.get(index));
+                    int lovePos = DataManager.getInstance(mContext).setFavoriteStatus(newInfo);
+                    ((BeautyApplication) mContext.getApplicationContext()).handleLoveRefreshCallBack(lovePos, mDatas.get(index).is_love);
+                    mLoadMoreWrapper.notifyItemChanged(position);
                 }
-                mDatas.get(itemPosition).love_time = System.currentTimeMillis();
-                AlbumInfo newInfo = new AlbumInfo(mDatas.get(itemPosition));
-                int lovePos = DataManager.getInstance(mContext).setFavoriteStatus(newInfo);
-                ((BeautyApplication) mContext.getApplicationContext()).handleLoveRefreshCallBack(lovePos, mDatas.get(itemPosition).is_love);
-                mLoadMoreWrapper.notifyItemChanged(itemPosition);
                 return true;
             }
         });
@@ -213,25 +301,21 @@ public class TagAlbumActivity extends BaseSwipeBackActivity {
 
     private void loadFBAd() {
         final Button closeButton = new Button(mContext);
-        adView = new com.facebook.ads.AdView(mContext, "800529513419419_800542710084766", AdSize.BANNER_320_50);
+        adView = new com.facebook.ads.AdView(mContext, "229449484183052_229452707516063", AdSize.BANNER_320_50);
         adView.loadAd();
-        Log.e("TagAlbumActivity", "loadFBAd ");
 
         adView.setAdListener(new AdListener() {
             @Override
             public void onError(Ad ad, AdError adError) {
-                Log.e("TagAlbumActivity", "onError " + adError.getErrorCode());
             }
 
             @Override
             public void onAdLoaded(Ad ad) {
-                Log.e("TagAlbumActivity", "onAdLoaded ");
                 closeButton.setVisibility(View.VISIBLE);
             }
 
             @Override
             public void onAdClicked(Ad ad) {
-                Log.e("TagAlbumActivity", "onAdClicked ");
                 adView.destroy();
                 closeButton.setVisibility(View.GONE);
             }
@@ -323,6 +407,7 @@ public class TagAlbumActivity extends BaseSwipeBackActivity {
     @Override
     protected void onDestroy() {
         adView.destroy();
+        mAdItems.clear();
         super.onDestroy();
         StatsWrapper.onPageEnd(mContext, StatsReportConstants.ENTRY_PAGE_CLASSIFY_DETAIL_ACTIVITY);
         DataManager.getInstance(mContext).requestTagPicAlbumDataFromServerStop();

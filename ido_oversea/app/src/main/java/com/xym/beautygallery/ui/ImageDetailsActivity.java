@@ -30,10 +30,6 @@ import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 import com.xym.beautygallery.R;
-import com.xym.beautygallery.ad.AdConstants;
-import com.xym.beautygallery.ad.AdManager;
-import com.xym.beautygallery.ad.AdUtils;
-import com.xym.beautygallery.ad.NativeAd;
 import com.xym.beautygallery.base.BaseSwipeBackActivity;
 import com.xym.beautygallery.base.BeautyApplication;
 import com.xym.beautygallery.base.Constants;
@@ -80,7 +76,6 @@ public class ImageDetailsActivity extends BaseSwipeBackActivity implements OnPag
     private AlbumInfo mAlbumInfo;
     private int mAdGap;
     private boolean isAdEnable = false;//AdManager.getInstance(mContext).enableAd(AdConstants.DEATIL_AD_ID);
-    protected Map<Integer, NativeAd> mAds;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,23 +89,9 @@ public class ImageDetailsActivity extends BaseSwipeBackActivity implements OnPag
         isFromFav = DataManager.getInstance(mContext).isFromFav();
         mAlbumInfo = DataManager.getInstance(mContext).getmCurrentAlbum();
         mDatas = DataManager.getInstance(mContext).getmPicListBrowseData();
-        mAdGap = AdManager.getInstance(mContext).getNativeAdGap(AdConstants.DEATIL_AD_ID);
-        mAds = new HashMap<>();
-        if (isAdEnable) {
-            if (mAdGap > 1) {
-                isAdEnable = true;
-            }
-        }
 
-        if (isAdEnable) {
-            imageTotal = mDatas.size();
-            imageAndAdTotal = mDatas.size() + mDatas.size() / (mAdGap - 1);
-            imageAndAdPosition = imagePosition + imagePosition / (mAdGap - 1);
-        } else {
-            imageTotal = mDatas.size();
-            imageAndAdTotal = mDatas.size();
-        }
-
+        imageTotal = mDatas.size();
+        imageAndAdTotal = mDatas.size();
 
         getActionBar().setHomeButtonEnabled(true); //设置返回键可用
         getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -130,7 +111,7 @@ public class ImageDetailsActivity extends BaseSwipeBackActivity implements OnPag
 
     private void loadFBAd() {
         final Button closeButton = new Button(mContext);
-        adView = new com.facebook.ads.AdView(mContext, "800529513419419_800542710084766", AdSize.BANNER_320_50);
+        adView = new com.facebook.ads.AdView(mContext, "229449484183052_229452707516063", AdSize.BANNER_320_50);
         adView.loadAd();
         Log.e("ImageDetailsActivity", "loadFBAd ");
 
@@ -198,22 +179,9 @@ public class ImageDetailsActivity extends BaseSwipeBackActivity implements OnPag
             TouchImageView imageView = (TouchImageView) viewLayout
                     .findViewById(R.id.image);
             String url = "";
-            if (isAdEnable) {
-                if (AdUtils.isAdItem(position, mAdGap)) {
-                    NativeAd ad = mAds.get(position);
-                    if (ad == null) {
-                        ad = AdManager.getInstance(mContext).randomAdInfo(AdConstants.DEATIL_AD_ID);
-                        mAds.put(position, ad);
-                    }
-                    url = ad.imgUrl;
-                    ad.performClick(imageView, AdConstants.DEATIL_AD_ID);
-                } else {
-                    int tempPosition = AdUtils.convertPos(position, mAdGap);
-                    url = mDatas.get(tempPosition).pic_url_address;
-                }
-            } else {
-                url = mDatas.get(position).pic_url_address;
-            }
+
+            url = mDatas.get(position).pic_url_address;
+
             loading.setVisibility(View.VISIBLE);
             Picasso.with(mContext).load(url).config(Bitmap.Config.RGB_565).into(imageView,
                     new Callback() {
@@ -296,44 +264,21 @@ public class ImageDetailsActivity extends BaseSwipeBackActivity implements OnPag
         MenuItem mActionShareTx = menu.findItem(R.id.action_share_tx);
         MenuItem mActionDownloadTx = menu.findItem(R.id.action_download_tx);
 
-        if (isAdEnable) {
-            if (AdUtils.isAdItem(imageAndAdPosition, mAdGap)) {
-                mActionFavBtn.setVisible(false);
-                mActionFavTx.setVisible(false);
-                mActionShareTx.setVisible(false);
-                mActionDownloadTx.setVisible(false);
+        if (mDatas.size() > 0) {
+            if (mAlbumInfo.is_love > 0) {
+                mActionFavBtn.setIcon(R.mipmap.heart_solid);
+                mActionFavBtn.setTitle(R.string.image_deatil_action_not_favorite);
+                mActionFavTx.setTitle(R.string.image_deatil_action_not_favorite);
             } else {
-                if (mDatas.size() > 0) {
-                    if (mAlbumInfo.is_love > 0) {
-                        mActionFavBtn.setIcon(R.mipmap.heart_solid);
-                        mActionFavBtn.setTitle(R.string.image_deatil_action_not_favorite);
-                        mActionFavTx.setTitle(R.string.image_deatil_action_not_favorite);
-                    } else {
-                        mActionFavBtn.setIcon(R.mipmap.heart_hollow);
-                        mActionFavBtn.setTitle(R.string.image_deatil_action_favorite);
-                        mActionFavTx.setTitle(R.string.image_deatil_action_favorite);
-                    }
-                } else {
-                    mActionFavBtn.setVisible(false);
-                    mActionFavTx.setVisible(false);
-                }
+                mActionFavBtn.setIcon(R.mipmap.heart_hollow);
+                mActionFavBtn.setTitle(R.string.image_deatil_action_favorite);
+                mActionFavTx.setTitle(R.string.image_deatil_action_favorite);
             }
         } else {
-            if (mDatas.size() > 0) {
-                if (mAlbumInfo.is_love > 0) {
-                    mActionFavBtn.setIcon(R.mipmap.heart_solid);
-                    mActionFavBtn.setTitle(R.string.image_deatil_action_not_favorite);
-                    mActionFavTx.setTitle(R.string.image_deatil_action_not_favorite);
-                } else {
-                    mActionFavBtn.setIcon(R.mipmap.heart_hollow);
-                    mActionFavBtn.setTitle(R.string.image_deatil_action_favorite);
-                    mActionFavTx.setTitle(R.string.image_deatil_action_favorite);
-                }
-            } else {
-                mActionFavBtn.setVisible(false);
-                mActionFavTx.setVisible(false);
-            }
+            mActionFavBtn.setVisible(false);
+            mActionFavTx.setVisible(false);
         }
+
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -486,18 +431,7 @@ public class ImageDetailsActivity extends BaseSwipeBackActivity implements OnPag
     @Override
     public void onPageSelected(int position) {
         imagePosition = position;
-        if (isAdEnable) {
-            imageAndAdPosition = position;
-            imagePosition = AdUtils.convertPos(position, mAdGap);
-            if (AdUtils.isAdItem(position, mAdGap)) {
-                getActionBar().setTitle(R.string.commom_ad);
-            } else {
-                getActionBar().setTitle((imagePosition + 1) + "/" + imageTotal);
-            }
-            this.getWindow().invalidatePanelMenu(Window.FEATURE_OPTIONS_PANEL);
-        } else {
-            getActionBar().setTitle((imagePosition + 1) + "/" + imageTotal);
-        }
+        getActionBar().setTitle((imagePosition + 1) + "/" + imageTotal);
     }
 
     @Override

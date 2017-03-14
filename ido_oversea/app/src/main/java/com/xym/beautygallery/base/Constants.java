@@ -19,7 +19,7 @@ public class Constants {
     public static String ACTION_BROWSE_REFRESH = BASE_ACTION + ".action_browse_refresh";
     public static String SERVER_TOTAL_PIC_BASE_URL = "http://beautygallery.file.alimmdn.com/v4/";
 
-    public static String SERVER_CHANNEL_URL = SERVER_TOTAL_PIC_BASE_URL + "channel_url_multi";
+    public static String SERVER_CHANNEL_URL = SERVER_TOTAL_PIC_BASE_URL + "channel_url_multi_ido";
     public static String SERVER_APP_RECOMMEND_URL = SERVER_TOTAL_PIC_BASE_URL + "appRecommend";
 
     public static final String APP_PATH = Environment.getExternalStorageDirectory().getPath()

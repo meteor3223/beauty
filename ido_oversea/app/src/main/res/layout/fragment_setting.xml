@@ -39,6 +39,23 @@
     </com.balysv.materialripple.MaterialRippleLayout>
 
     <com.balysv.materialripple.MaterialRippleLayout
+        android:id="@+id/slide_share"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="center_vertical"
+        android:paddingLeft="16dp">
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:drawableLeft="@mipmap/slide_share"
+            android:drawablePadding="36dp"
+            android:gravity="center_vertical"
+            android:text="@string/share_me"
+            android:textColor="@color/md_black_1"
+            android:textSize="16sp" />
+    </com.balysv.materialripple.MaterialRippleLayout>
+
+    <com.balysv.materialripple.MaterialRippleLayout
         android:id="@+id/slide_about"
         android:layout_width="match_parent"
         android:layout_height="48dp"

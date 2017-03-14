@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/lllw/Documents/HylaxProject/beauty/ido_oversea/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="09c5e804bc67fc0580360043dff067df574a60d4">
+        <dex dex="/Users/lllw/Documents/HylaxProject/beauty/ido_oversea/app/build/intermediates/transforms/dex/ido/debug/folders/1000/10/com.android.support-recyclerview-v7-23.1.1_6ce9ee02c28a061c8ec9336933c404cad9c5aef5/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/lllw/Documents/HylaxProject/beauty/ido_oversea/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="5e412e954a24c5310a459c09870e4e2081aceb03">
+        <dex dex="/Users/lllw/Documents/HylaxProject/beauty/ido_oversea/app/build/intermediates/transforms/dex/ido/debug/folders/1000/10/com.android.support-cardview-v7-23.1.1_95e6b69f689d1161f8f87f8e6094976195d2d75f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/lllw/Documents/HylaxProject/beauty/ido_oversea/app/build/intermediates/exploded-aar/ido_oversea/Getui_SDK/unspecified/jars/libs/GetuiExt-2.0.3.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="0d2a2a57edfb8834926eeff22b363292dc5503b0">
+        <dex dex="/Users/lllw/Documents/HylaxProject/beauty/ido_oversea/app/build/intermediates/transforms/dex/ido/debug/folders/1000/8/GetuiExt-2.0.3_376a1ab22aac6bb0d7531f5d7772c8790f0b8498/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/lllw/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife-annotations/8.1.0/d6854f42bfb4098d3d2358d93201307b9f1cc95d/butterknife-annotations-8.1.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="d6854f42bfb4098d3d2358d93201307b9f1cc95d">
+        <dex dex="/Users/lllw/Documents/HylaxProject/beauty/ido_oversea/app/build/intermediates/transforms/dex/ido/debug/folders/1000/10/butterknife-annotations-8.1.0_658ba7708259ce7b42cacd5557113e22193b1e58/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/lllw/Documents/HylaxProject/beauty/ido_oversea/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/libs/internal_impl-23.1.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
+        <dex dex="/Users/lllw/Documents/HylaxProject/beauty/ido_oversea/app/build/intermediates/transforms/dex/ido/debug/folders/1000/10/internal_impl-23.1.1_5afdfc1760a9c6db2929f794f02e48b9b64dbac8/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/lllw/Documents/HylaxProject/beauty/ido_oversea/app/libs/TalkingData_Analytics_Android_SDK_GP.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="17b68beb8ffd02ca03cc41cfe66a2e4e9a94692e">
+        <dex dex="/Users/lllw/Documents/HylaxProject/beauty/ido_oversea/app/build/intermediates/transforms/dex/ido/debug/folders/1000/2/TalkingData_Analytics_Android_SDK_GP_869f38a2599ec442bba7f424473a5e78c4a8a71b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/lllw/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="/Users/lllw/Documents/HylaxProject/beauty/ido_oversea/app/build/intermediates/transforms/dex/ido/debug/folders/1000/10/picasso-2.5.2_7a79b59b0326958ea42aa1892a627e6f81ab3391/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/lllw/Documents/HylaxProject/beauty/ido_oversea/app/libs/umeng-analytics-v5.6.3.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="8a8255ad63bcf5d7609e26b24d6cc38a3d961d40">
+        <dex dex="/Users/lllw/Documents/HylaxProject/beauty/ido_oversea/app/build/intermediates/transforms/dex/ido/debug/folders/1000/2/umeng-analytics-v5.6.3_0733692351cea176502b47113ef493d7c4bcbfb3/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/lllw/Documents/HylaxProject/beauty/ido_oversea/app/build/intermediates/exploded-aar/com.jakewharton/butterknife/8.1.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="d4ab8678882571a0a6f19c47a826ecbce5b4f42b">
+        <dex dex="/Users/lllw/Documents/HylaxProject/beauty/ido_oversea/app/build/intermediates/transforms/dex/ido/debug/folders/1000/10/com.jakewharton-butterknife-8.1.0_98884fb3411a54d2ac6f48664154b1e530bafd55/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/lllw/Documents/HylaxProject/beauty/ido_oversea/app/build/intermediates/incremental-runtime-classes/ido/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="835d118d2bba5ef640353ded67b4548bc65f5e3f">
+        <dex dex="/Users/lllw/Documents/HylaxProject/beauty/ido_oversea/app/build/intermediates/transforms/dex/ido/debug/folders/1000/10/instant-run_5a17d5831c76f210a518a74d6c8dd117573380a1/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/lllw/Documents/HylaxProject/beauty/ido_oversea/app/libs/volley.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="709910b5d31ce21306fe3a48adc73267d3fb816c">
+        <dex dex="/Users/lllw/Documents/HylaxProject/beauty/ido_oversea/app/build/intermediates/transforms/dex/ido/debug/folders/1000/2/volley_027f640b3a288ffc89bd3c1fb6e924aa9c4b13f1/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/lllw/Documents/HylaxProject/beauty/ido_oversea/app/build/intermediates/exploded-aar/ido_oversea/Getui_SDK/unspecified/jars/libs/GetuiSDK2.8.1.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="b43e5303bb4201d3aa9a6fd1bfe4ddd838fe1813">
+        <dex dex="/Users/lllw/Documents/HylaxProject/beauty/ido_oversea/app/build/intermediates/transforms/dex/ido/debug/folders/1000/8/GetuiSDK2.8.1.0_5f599d1527bf86c4715decac4c12c7ec42338ecf/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/lllw/Documents/HylaxProject/beauty/ido_oversea/app/libs/AudienceNetwork.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="b8bde2ab78ff1778042f3d7af6e19fa6659bb066">
+        <dex dex="/Users/lllw/Documents/HylaxProject/beauty/ido_oversea/app/build/intermediates/transforms/dex/ido/debug/folders/1000/2/AudienceNetwork_caad1233949e7ebfee9b5823edf4d6baa1b842f7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/lllw/Documents/HylaxProject/beauty/ido_oversea/app/build/intermediates/exploded-aar/ido_oversea/Getui_SDK/unspecified/jars/libs/json_simple-1.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="e7ec75025561e0d01667c0bfb565cfd51ef0e83e">
+        <dex dex="/Users/lllw/Documents/HylaxProject/beauty/ido_oversea/app/build/intermediates/transforms/dex/ido/debug/folders/1000/8/json_simple-1.1_ad7dc718d82384ac03d9a4b215207f4720c0e7b7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/lllw/Documents/HylaxProject/beauty/ido_oversea/app/build/intermediates/incremental-classes/ido/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="a83768d58ef22df29dea4801a8722b659dd99082">
+        <dex dex="/Users/lllw/Documents/HylaxProject/beauty/ido_oversea/app/build/intermediates/transforms/dex/ido/debug/folders/1000/10/instant-run-bootstrap_5e55d37de4590f0e3621e37bc7e631734bc3f433/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/lllw/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.3.0/support-annotations-23.3.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
+        <dex dex="/Users/lllw/Documents/HylaxProject/beauty/ido_oversea/app/build/intermediates/transforms/dex/ido/debug/folders/1000/10/support-annotations-23.3.0_76fe92a6f61d90795995e3118de466bc75faf8ce/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/lllw/Documents/HylaxProject/beauty/ido_oversea/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
+        <dex dex="/Users/lllw/Documents/HylaxProject/beauty/ido_oversea/app/build/intermediates/transforms/dex/ido/debug/folders/1000/10/com.android.support-support-v4-23.1.1_ba0832c0452c5585be3391331e6cd0aeaf9e838b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/lllw/Documents/HylaxProject/beauty/ido_oversea/app/build/intermediates/exploded-aar/com.android.support/multidex/1.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="78ea232052df889856dcb7b7b542707c89bb3bfb">
+        <dex dex="/Users/lllw/Documents/HylaxProject/beauty/ido_oversea/app/build/intermediates/transforms/dex/ido/debug/folders/1000/10/com.android.support-multidex-1.0.1_779e730506be0598209f4dea592c42d2ca840905/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/lllw/Documents/HylaxProject/beauty/ido_oversea/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
+        <dex dex="/Users/lllw/Documents/HylaxProject/beauty/ido_oversea/app/build/intermediates/transforms/dex/ido/debug/folders/1000/10/com.android.support-appcompat-v7-23.1.1_bd2f1d462f34fe33df858b0b4fd6c6d6dd5c4b34/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/lllw/Documents/HylaxProject/beauty/ido_oversea/app/libs/com.umeng.fb.5.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="993055275c65a58d47e98493d8028a74a0e1c06e">
+        <dex dex="/Users/lllw/Documents/HylaxProject/beauty/ido_oversea/app/build/intermediates/transforms/dex/ido/debug/folders/1000/2/com.umeng.fb.5.4.0_c1af446b100e83d0a9e8eb45a35039cac46a3a26/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/lllw/Documents/HylaxProject/beauty/ido_oversea/app/libs/nineoldandroids-library-2.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.2"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="/Users/lllw/Documents/HylaxProject/beauty/ido_oversea/app/build/intermediates/transforms/dex/ido/debug/folders/1000/2/nineoldandroids-library-2.4.0_5f59d4020385f86dd8c1b4231a0cb75bcc9f5aa6/classes.dex" />
+    </item>
+
+</items>

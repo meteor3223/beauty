@@ -344,7 +344,7 @@ public class Utils {
         try {
             appInfo = ctx.getPackageManager().getApplicationInfo(ctx.getPackageName(),
                     PackageManager.GET_META_DATA);
-            return appInfo.metaData.getString("TD_CHANNEL_ID");
+            return appInfo.metaData.getString("UMENG_CHANNEL");
         } catch (PackageManager.NameNotFoundException e) {
 
         }

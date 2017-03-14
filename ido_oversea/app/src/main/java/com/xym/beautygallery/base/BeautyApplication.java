@@ -5,7 +5,6 @@ import android.os.Environment;
 
 import com.xckevin.download.DownloadConfig;
 import com.xckevin.download.DownloadManager;
-import com.xym.beautygallery.ad.AdManager;
 import com.xym.beautygallery.appinfo.AppManager;
 import com.xym.beautygallery.base.stats.StatsWrapper;
 import com.xym.beautygallery.module.DataManager;
@@ -49,7 +48,6 @@ public class BeautyApplication extends Application {
             @Override
             public void run() {
                 AppManager.getInstance(BeautyApplication.this).loadAppData();
-                AdManager.getInstance(BeautyApplication.this).init();
             }
         }).start();
     }

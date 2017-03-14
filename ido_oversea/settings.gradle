@@ -1,1 +1,1 @@
-include ':app', ':DownloadLib'
+include ':app', ':DownloadLib', ':Getui_SDK'

@@ -40,8 +40,20 @@ public void *(***);
     public static final int *;
 }
 
+#Baidu mssp Ad
+-dontwarn com.baidu.**
+-keep class com.baidu.** {
+    public protected *;
+}
+
 #picasso
 -dontwarn com.squareup.okhttp.**
+
+#getui push
+-dontwarn com.igexin.**
+-keep class com.igexin.** {
+    *;
+}
 
 #pgyer update module
 -dontwarn com.pgyersdk.**

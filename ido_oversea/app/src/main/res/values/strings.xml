@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">Beauty wallpaper</string>
+    <string name="app_name">Beauty Enjoy</string>
 
-    <string name="introduce">&#160;&#160;&#160;&#160;You are welcome to use Look Beauty!\n&#160;&#160;&#160;&#160;1, please click on the upper left corner, will appear in the menu bar;\n&#160;&#160;&#160;&#160;2, the third is what we carefully collected information on a page, click can open the browser, click the heart-shaped icon can add to favorites, because we will regularly update, please add to favorites if you like the content;\n&#160;&#160;&#160;&#160;3, the fourth for favorites, it will be shown frequency intelligent sorting;</string>
+    <string name="introduce">&#160;&#160;&#160;&#160;You are welcome to use Look Enjoy!\n&#160;&#160;&#160;&#160;1, please click on the upper left corner, will appear in the menu bar;\n&#160;&#160;&#160;&#160;2, the third is what we carefully collected information on a page, click can open the browser, click the heart-shaped icon can add to favorites, because we will regularly update, please add to favorites if you like the content;\n&#160;&#160;&#160;&#160;3, the fourth for favorites, it will be shown frequency intelligent sorting;</string>
     <string name="action_main">Main</string>
     <string name="action_content">Content Alliance</string>
     <string name="action_suggestion">Recommended</string>
@@ -26,7 +26,7 @@
     <string name="default_reply">Welcome to use! Any questions or suggestions, please give us feedback here. We will contact you in time. Thank you very much!</string>
     <string name="feedback_message">Receive reply</string>
     <string name="wifimgr_say_to_product_manager">"Feedback to product manager"</string>
-    <string name="about_msg">&#160;&#160;&#160;&#160;&#160;&#160;You are welcome to use Beauty wallpaper!</string>
+    <string name="about_msg">&#160;&#160;&#160;&#160;&#160;&#160;You are welcome to use Beauty Enjoy!</string>
     <string name="wifimgr_version">"Version：V%1$s"</string>
     <string name="on_back_pressed_prompt">Press again to quit</string>
     <string name="close">Close</string>
@@ -78,4 +78,10 @@
     <string name="tag_good_web">Famous</string>
     <string name="tag_beauty_name">Name</string>
     <string name="tag_vision">Vision</string>
+    <string name="icon_desc">Ad icon</string>
+    <string name="image_desc">Ad image</string>
+
+    <string name="beauty_share_detail">Share Beauty Enjoy to friends</string>
+    <string name="beauty_share_text">Click to download:</string>
+    <string name="beauty_share_from">".From:"</string>
 </resources>
