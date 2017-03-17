@@ -3,6 +3,7 @@ package com.xym.beautygallery.base;
 import android.app.Application;
 import android.os.Environment;
 
+import com.facebook.ads.AdSettings;
 import com.xckevin.download.DownloadConfig;
 import com.xckevin.download.DownloadManager;
 import com.xym.beautygallery.appinfo.AppManager;
@@ -39,6 +40,7 @@ public class BeautyApplication extends Application {
     private void doInMainProcess() {
         AppManager.getInstance(this).listenSystemBroadcasts();
         initDownloadManager();
+        //AdSettings.addTestDevice("7bb869238fe7926abcb500adf7f001bc");
         doAsyncTask();
         DataManager.getInstance(this).requestChannelDataFromServer();
     }

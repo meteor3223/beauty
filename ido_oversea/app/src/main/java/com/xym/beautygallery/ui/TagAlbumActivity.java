@@ -41,6 +41,7 @@ import com.xym.beautygallery.base.stats.StatsReportConstants;
 import com.xym.beautygallery.base.stats.StatsWrapper;
 import com.xym.beautygallery.module.AlbumInfo;
 import com.xym.beautygallery.module.DataManager;
+import com.xym.beautygallery.module.MapPicAd;
 import com.xym.beautygallery.module.PicInfo;
 import com.xym.beautygallery.utils.Utils;
 import com.xym.beautygallery.view.MyGridLayoutManager;
@@ -81,10 +82,9 @@ public class TagAlbumActivity extends BaseSwipeBackActivity {
     private RelativeLayout.LayoutParams reLayoutParams;
 
     private NativeAdsManager mNativeAdsManager;
-    private List<NativeAd> mAdItems;
+    private List<MapPicAd> mAdItems;
+    private int adCount = 0;
     private int adDisplayFrequency = 6;
-    private int POST_TYPE = 0;
-    private int AD_TYPE = 1;
     private int ad_width = 0;
     private int ad_height = 0;
 
@@ -98,8 +98,25 @@ public class TagAlbumActivity extends BaseSwipeBackActivity {
         return itemPosition;
     }
 
-    private int getAdType(int position) {
-        return position % adDisplayFrequency == (adDisplayFrequency - 1) ? AD_TYPE : POST_TYPE;
+    private boolean checkAdType(int position) {
+        if (position == mAdItems.size()) {
+            MapPicAd tempPicAd = new MapPicAd();
+            if (position % adDisplayFrequency == (adDisplayFrequency - 1)) {
+                if (mNativeAdsManager.isLoaded()) {
+                    tempPicAd.isAd = true;
+                    tempPicAd.nativeAd = mNativeAdsManager.nextNativeAd();
+                    adCount++;
+                }
+            }
+            if (tempPicAd.isAd == false) {
+                tempPicAd.picIndex = position - adCount;
+            }
+            mAdItems.add(position, tempPicAd);
+        }
+        if (position < mAdItems.size()) {
+            return mAdItems.get(position).isAd;
+        }
+        return false;
     }
 
     @Override
@@ -127,7 +144,7 @@ public class TagAlbumActivity extends BaseSwipeBackActivity {
             @Override
             protected void convert(ViewHolder holder, AlbumInfo s, int position) {
                 final int itemPosition = calcItemPosition(position);
-                if (getAdType(itemPosition) == AD_TYPE) {
+                if (checkAdType(itemPosition)) {
                     LabelImageView photoIv = holder.getView(R.id.main_photo_item_iv);
                     TextView photoPics = holder.getView(R.id.main_photo_item_pics_tv);
                     LinearLayout nativeAdUnit = holder.getView(R.id.ad_unit);
@@ -142,19 +159,7 @@ public class TagAlbumActivity extends BaseSwipeBackActivity {
                     para.width = ad_width;
                     nativeAdUnit.setLayoutParams(para);
 
-                    int index = (itemPosition / adDisplayFrequency);
-                    if (mAdItems.size() > index) {
-                        ad = mAdItems.get(index);
-                        if (ad == null && mNativeAdsManager.isLoaded()) {
-                            ad = mNativeAdsManager.nextNativeAd();
-                            mAdItems.set(index, ad);
-                        }
-                    } else {
-                        if (mNativeAdsManager.isLoaded()) {
-                            ad = mNativeAdsManager.nextNativeAd();
-                        }
-                        mAdItems.add(index, ad);
-                    }
+                    ad = mAdItems.get(itemPosition).nativeAd;
 
                     if (ad != null) {
                         ImageView adChoicesIm = holder.getView(R.id.ad_choices_view);
@@ -174,7 +179,7 @@ public class TagAlbumActivity extends BaseSwipeBackActivity {
                         ad.registerViewForInteraction(nativeAdUnit);
                     }
                 } else {
-                    int index = itemPosition - (itemPosition / adDisplayFrequency);
+                    int index = mAdItems.get(itemPosition).picIndex;
                     LabelImageView photoIv = holder.getView(R.id.main_photo_item_iv);
                     TextView photoPics = holder.getView(R.id.main_photo_item_pics_tv);
                     LinearLayout nativeAdUint = holder.getView(R.id.ad_unit);
@@ -229,10 +234,10 @@ public class TagAlbumActivity extends BaseSwipeBackActivity {
             @Override
             public void onItemClick(View view, RecyclerView.ViewHolder holder, final int position) {
                 final int itemPosition = calcItemPosition(position);
-                if (getAdType(itemPosition) == AD_TYPE) {
+                if (checkAdType(itemPosition)) {
 
                 } else {
-                    int index = itemPosition - (itemPosition / adDisplayFrequency);
+                    int index = mAdItems.get(itemPosition).picIndex;
                     AlbumInfo currentAlbum = mDatas.get(index);
                     if (currentAlbum != null) {
                         DataManager.getInstance(mContext).setmCurrentAlbum(currentAlbum);
@@ -252,10 +257,10 @@ public class TagAlbumActivity extends BaseSwipeBackActivity {
             @Override
             public boolean onItemLongClick(View view, RecyclerView.ViewHolder holder, int position) {
                 int itemPosition = calcItemPosition(position);
-                if (getAdType(itemPosition) == AD_TYPE) {
+                if (checkAdType(itemPosition)) {
 
                 } else {
-                    int index = itemPosition - (itemPosition / adDisplayFrequency);
+                    int index = mAdItems.get(itemPosition).picIndex;
                     if (mDatas.get(index).is_love > 0) {
                         mDatas.get(index).is_love = 0;
                     } else {

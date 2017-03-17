@@ -66,6 +66,9 @@ public class PhotoFavoriteFragment extends CustomFragment {
     private Unbinder unbinder;
     private AdView adView;
 
+    //Facebook bannder Ad
+    //private String banner_ad = "1270806359641222_1270809456307579";
+
     private List<AlbumInfo> mDatas;
     private CommonAdapter<AlbumInfo> mAdapter;
     private HeaderAndFooterWrapper mHeaderAndFooterWrapper;
@@ -183,7 +186,7 @@ public class PhotoFavoriteFragment extends CustomFragment {
 
     private void loadFBAd() {
         final Button closeButton = new Button(mContext);
-        adView = new com.facebook.ads.AdView(mContext, "229449484183052_229452707516063", AdSize.BANNER_320_50);
+        adView = new com.facebook.ads.AdView(mContext, Constants.BANNER_AD_ID, AdSize.BANNER_320_50);
         adView.loadAd();
         Log.e("PhotoFavoriteFragment", "loadFBAd ");
 

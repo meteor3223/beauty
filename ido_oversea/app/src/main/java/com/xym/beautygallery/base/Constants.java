@@ -77,4 +77,9 @@ public class Constants {
 
     public static final String ACTION_DOWNLOAD_STATUS_UPDATE = "download_status_update";
     public static final String ACTION_DOWNLOAD_PERCENT_UPDATE = "download_percent_update";
+
+    //Facebook Ad id
+    public static final String NATIVE_AD_ID = "1270806359641222_1270810369640821";
+    public static final String BANNER_AD_ID = "1270806359641222_1270809456307579";
+
 }

@@ -50,7 +50,7 @@ public class RSplashActivity extends Activity implements InterstitialAdListener,
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AdSettings.addTestDevice("7bb869238fe7926abcb500adf7f001bc");
+        //AdSettings.addTestDevice("7bb869238fe7926abcb500adf7f001bc");
         addShortcut();
         setContentView(R.layout.splash);
         if (interstitialAd != null) {
